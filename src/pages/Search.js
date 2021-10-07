@@ -23,13 +23,12 @@ function Search() {
     if(id){
         searchForMovie(id);
     }
-  },[])
+  },[id])
 
   async function searchForMovie(id){
     let qId = id ? `i=${id}&` : '';
     const response = await fetch(`https://www.omdbapi.com/?${qId}t=${searchTitle}&apikey=59283398&y=${searchYear}`);
     const data = await response.json();
-    console.log(data)
     setResult(data);
     setInFavs(!!getFavorite(data.imdbID));
   }
@@ -46,7 +45,7 @@ function Search() {
             </Badge>
         });
     }
-    if(result.imdbRating && result.imdbRating != 'N/A'){
+    if(result.imdbRating && result.imdbRating !== 'N/A'){
         stars = Math.trunc(result.imdbRating /2);
         if(stars >= 0)
             stars = [...Array(stars).keys()].map(()=><Star></Star>);
@@ -81,11 +80,9 @@ function Search() {
               e.preventDefault();
               searchForMovie();
             }}>
-           
                 <h2>Search</h2>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label></Form.Label>
-                
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Movie</Form.Label>
@@ -116,7 +113,7 @@ function Search() {
               <Container>
                <Row>
                   <Col>
-                  {result.Poster !== 'N/A' ? <img src={result.Poster}></img> : '' } 
+                  {result.Poster !== 'N/A' ? <img alt="" src={result.Poster}></img> : '' } 
                   </Col>
                   <Col>
                   <h2>{result.Title} ({result.Year})</h2>
@@ -140,11 +137,9 @@ function Search() {
                     setSearchTitle('');
                     setSearchYear('');
                     searchTitleInput.focus();
-
                   }}>Clear</Button>
                   </Col>
                   <Col>
-
                   {favButton}
                   </Col>
                 </Row>
@@ -152,9 +147,7 @@ function Search() {
             }
             </Col>
           </Row>
-
         </Container>
-
     </>
   );
 }

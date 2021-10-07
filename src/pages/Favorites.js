@@ -7,9 +7,6 @@ import {getAllFavorites,removeFavorite} from '../functions/actions';
 
 
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link
 } from "react-router-dom";
 
@@ -29,7 +26,7 @@ function Favorites() {
         <Container>
             <Row>
                 <Col>
-                    <img width="200" height="300" src={m.Poster}></img>
+                    <img alt="" width="200" height="300" src={m.Poster}></img>
                 <button className="img-button" onClick={()=>{
                         setFavs(removeFavorite(m));
                     }}>

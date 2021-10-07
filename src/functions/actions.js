@@ -1,5 +1,3 @@
-import Favorites from "../pages/Favorites";
-
 export function addFavorite(movie){
     let favorites = localStorage.getItem('favorites');
     if(!favorites){
